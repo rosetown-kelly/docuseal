@@ -35,6 +35,8 @@ yarn-debug.log*
 /coverage
 /attachments
 /docuseal
+/preview_data
+/preview_pg_data
 /ee
 dump.rdb
 *.onnx
