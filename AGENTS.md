@@ -11,7 +11,7 @@ This fork includes a few small branding and local-preview changes:
   `Powered by the DocuSeal open-source project.`
 - Simplified the unauthenticated public homepage to show only the logo, title, and this description:
   `A self-hosted and open-source web platform that provides secure and efficient digital document signing and processing.`
-- Added optional public homepage tagline support via the `TAGLINE` environment variable.
+- Added optional tagline support via the `TAGLINE` environment variable on the public homepage and top-left navbar logo.
 - Removed DocuSeal footer branding from outgoing HTML emails by stopping the mailer layout from rendering the shared email attribution partial.
 - Removed recipient-facing DocuSeal attribution/footer branding from the signing flow pages under `app/views/start_form/*` and `app/views/submit_form/*`.
 - Removed the same attribution from the send-copy/completed recipient screens:

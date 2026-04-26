@@ -1,2 +1,7 @@
 <%= render 'shared/logo' %>
-<span>DocuSeal</span>
+<span class="flex flex-col leading-none">
+  <span>DocuSeal</span>
+  <% if Docuseal::TAGLINE.present? %>
+    <span class="mt-1 text-xs font-normal text-base-content/45"><%= Docuseal::TAGLINE %></span>
+  <% end %>
+</span>
