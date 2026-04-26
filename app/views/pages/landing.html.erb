@@ -7,6 +7,11 @@
           <h1 class="text-6xl font-bold mt-4 mb-4">
             DocuSeal
           </h1>
+          <% if Docuseal::TAGLINE.present? %>
+            <p class="text-sm text-base-content/45 -mt-2 mb-2">
+              <%= Docuseal::TAGLINE %>
+            </p>
+          <% end %>
         </div>
         <h2 class="mt-4 text-lg text-center text-gray-600">
           A self-hosted and open-source web platform that provides secure and efficient digital document signing and processing.
