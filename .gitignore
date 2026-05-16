@@ -37,6 +37,7 @@ yarn-debug.log*
 /docuseal
 /preview_data
 /preview_pg_data
+/caddy
 /ee
 dump.rdb
 *.onnx
