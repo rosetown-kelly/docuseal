@@ -171,15 +171,23 @@ module Submitters
 
   def send_signature_requests(submitters, delay_seconds: nil)
     submitters.each_with_index do |submitter, index|
-      next if submitter.email.blank?
       next if submitter.declined_at?
-      next if submitter.preferences['send_email'] == false
 
-      if delay_seconds
-        SendSubmitterInvitationEmailJob.perform_in((delay_seconds + index).seconds, 'submitter_id' => submitter.id)
-      else
-        SendSubmitterInvitationEmailJob.perform_async('submitter_id' => submitter.id)
+      if submitter.email.present? && submitter.preferences['send_email'] != false
+        enqueue_invitation_job(SendSubmitterInvitationEmailJob, submitter, delay_seconds:, index:)
       end
+
+      if submitter.phone.present? && submitter.preferences['send_sms'] == true
+        enqueue_invitation_job(SendSubmitterInvitationSmsJob, submitter, delay_seconds:, index:)
+      end
+    end
+  end
+
+  def enqueue_invitation_job(job, submitter, delay_seconds:, index:)
+    if delay_seconds
+      job.perform_in((delay_seconds + index).seconds, 'submitter_id' => submitter.id)
+    else
+      job.perform_async('submitter_id' => submitter.id)
     end
   end
 

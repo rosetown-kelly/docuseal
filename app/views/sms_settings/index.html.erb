@@ -2,7 +2,30 @@
   <%= render 'shared/settings_nav' %>
   <div class="flex-grow max-w-xl mx-auto">
     <h1 class="text-4xl font-bold mb-4">SMS</h1>
-    <%= render 'placeholder' %>
+    <div class="card bg-base-200">
+      <div class="card-body">
+        <h2 class="card-title"><%= t('twilio_settings') %></h2>
+        <% if TwilioSms.configured? %>
+          <p class="text-gray-700">
+            Twilio SMS is configured from environment variables.
+          </p>
+          <div class="text-sm text-gray-700">
+            <div><%= t('from') %>: <%= TwilioSms.messaging_service_sid.presence || TwilioSms.phone_number %></div>
+            <div><%= t('account_sid') %>: <%= TwilioSms.account_sid.sub(/.{6}\z/, '******') %></div>
+          </div>
+        <% else %>
+          <div class="alert">
+            <%= svg_icon('info_circle', class: 'w-6 h-6') %>
+            <div>
+              <p class="font-bold"><%= t('sms_not_configured') %></p>
+              <p class="text-gray-700">
+                Set TWILIO_ACCOUNT_SID, TWILIO_API_KEY_SID, TWILIO_API_KEY_SECRET, and TWILIO_PHONE_NUMBER.
+              </p>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    </div>
   </div>
   <div class="w-0 md:w-52"></div>
 </div>

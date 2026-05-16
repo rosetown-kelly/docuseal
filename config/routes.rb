@@ -27,6 +27,7 @@ Rails.application.routes.draw do
     resource :user, only: %i[show]
     resources :attachments, only: %i[create]
     resources :submitter_email_clicks, only: %i[create]
+    resources :submitter_sms_clicks, only: %i[create]
     resources :submitter_form_views, only: %i[create]
     resources :submitters, only: %i[index show update]
     resources :submissions, only: %i[index show create destroy] do
